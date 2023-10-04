@@ -1,0 +1,114 @@
+﻿@model multiple_choice.viewmodel.SurveyViewModel;
+@{
+    ViewData["Title"] = "Survey";
+}
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<div class="form-check">
+
+    <h3>Interview Feedback</h3>
+
+    <div>
+        <h5>1) @Model.Questions[0].QuestionsText (single choice)</h5>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q1" value="a"> a) StackOverflow
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q1" value="b"> b) Indeed
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q1" value="c"> c) Other
+        </label><br>
+    </div>
+
+    <div>
+        <h5>2) @Model.Questions[1].QuestionsText (multiple choice)</h5>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q2" value="a"> a) Easy to access by public transport
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q2" value="b"> b) Easy to access by car
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q2" value="c"> c) In a pleasant area
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q2" value="d"> d) None of the above
+        </label><br>
+    </div>
+
+    <div>
+        <h5>3) @Model.Questions[2].QuestionsText (single choice)</h5>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q3" value="a"> a) Tidy
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q3" value="b"> b) Sloppy
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q3" value="c"> c) Did not notice
+        </label><br>
+    </div>
+
+    <div>
+        <h5>4) @Model.Questions[3].QuestionsText (single choice)</h5>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q4" value="a"> a) Very difficult
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q4" value="b"> b) Difficult
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q4" value="c"> c) Moderate
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="q4" value="d"> d) Easy
+        </label><br>
+    </div>
+
+    <div>
+        <h5>5) @Model.Questions[4].QuestionsText (multiple choice)</h5>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q5" value="a"> a) Enthusiastic
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q5" value="b"> b) Polite
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q5" value="c"> c) Organized
+        </label><br>
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="q5" value="d"> d) Could not tell
+        </label><br>
+    </div>
+
+    <input type="submit" value="Submit">
+
+</div>
+
+<script>
+    //Add Data Function
+    function Add() {
+
+        var multipleChoiceObj = {
+            EmployeeID: $('#EmployeeID').val(),
+            Name: $('#Name').val(),
+            Age: $('#Age').val(),
+            State: $('#State').val(),
+            Country: $('#Country').val()
+        };
+        $.ajax({
+            url: "/FormSubmission/Add",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>
